@@ -23,7 +23,7 @@ const loginUser = async (req,res) =>{
         res.json({success:true, token})
     } catch (error) {
         console.log(error)
-        res.json({success:false, message:'Error'})
+        res.status(500).json({success:false, message:'Internal Server Error'})
     }
 }
 
@@ -63,11 +63,11 @@ const registerUser = async (req, res) =>{
 
       const user =  await newUser.save()
       const token = createToken(user._id)
-      res.json({success:true, token})
+      res.status(200).json({success:true, token})
 
     } catch (error) {
         console.log(error)
-        res.json({success:false, message:'Error'})
+        res.status(500).json({success:false, message:'Internal Server Error'})
     }
 }
 
